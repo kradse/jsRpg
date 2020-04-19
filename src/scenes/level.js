@@ -15,7 +15,7 @@ export const level = {
 				map.setMap(values[0].map)
 				addEventHandlers.mapControls()
 				pRef = new player('placeholder', '', 6, 5)
-				console.log(pRef)
+				//console.log(pRef)
 				resolve(values)
 			})
 		})
