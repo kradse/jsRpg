@@ -1,1 +1,2 @@
 24/04-20: Walking backwards after hitting a border borders makes the camera move with the player
+24/04-20: The player can technical walk out of the map, but i intent to always have walls at the borders anyway

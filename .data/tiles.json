@@ -1,0 +1,29 @@
+{
+	"type": {
+		"boulder":{
+			"traversable": false,
+			"x": 0,
+			"y": 0
+		},
+		"grass": {
+			"traversable": true,
+			"x": 1,
+			"y": 0
+		},
+		"path": {
+			"traversable": true,
+			"x": 2,
+			"y": 0
+		},
+		"shallowWater": {
+			"traversable": true,
+			"x": 3,
+			"y": 0
+		},
+		"deepWater": {
+			"traversable": false,
+			"x": 4,
+			"y": 0
+		}
+	}
+}

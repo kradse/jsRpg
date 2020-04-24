@@ -3,6 +3,8 @@ import { player } from "../models/player.js"
 import { direction } from "./enums.js"
 import { main } from "../main.js"
 import { camera } from "../models/camera.js"
+import { map } from "../models/map.js"
+import { interpreter } from "./interpreter.js"
 
 const _activeListeners = []
 let p = new player()
@@ -26,7 +28,14 @@ export const removeEventHandlers = () => {
 
 const _setMapControls = async (e) => {
 	const keys = getKeys()
+	const m = map.getMap()
+
 	p = p.getPlayer()
+	const pTile = {
+		x: p.x / tileSize,
+		y: p.y / tileSize,
+	}
+	let tile = {}
 	switch (e.code) {
 		case keys.Escape:
 			main.setGameStatus(3)
@@ -41,23 +50,35 @@ const _setMapControls = async (e) => {
 			break;
 
 		case keys.left: case keys.left2:
-			camera.move(direction.West)
-			p.move(direction.West)
+			tile = interpreter.readTile(m[pTile.y][pTile.x - 1])
+			if (tile.traversable){
+				camera.move(direction.West)
+				p.move(direction.West)
+			}
 			break;
 
 		case keys.up: case keys.up2:
-			camera.move(direction.North)
-			p.move(direction.North)
+			tile = interpreter.readTile(m[pTile.y - 1][pTile.x])
+			if (tile.traversable) {
+				camera.move(direction.North)
+				p.move(direction.North)
+			}
 			break;
 
 		case keys.right: case keys.right2:
-			camera.move(direction.East)
-			p.move(direction.East)
+			tile = interpreter.readTile(m[pTile.y][pTile.x + 1])
+			if (tile.traversable) {
+				camera.move(direction.East)
+				p.move(direction.East)
+			}
 			break;
 
 		case keys.down: case keys.down2:
-			camera.move(direction.South)
-			p.move(direction.South)
+			tile = interpreter.readTile(m[pTile.y + 1][pTile.x])
+			if (tile.traversable) {
+				camera.move(direction.South)
+				p.move(direction.South)
+			}
 			break;
 
 		default:
