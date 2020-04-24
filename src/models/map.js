@@ -1,4 +1,4 @@
-let _map = {}
+let _map = [[]]
 
 export const map = {
 	getMap: () => {
